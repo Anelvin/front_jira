@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import './signIn.scss';
 import { TextField, Button } from '@material-ui/core';
 
-function signIn(){
+function signUp(){
     return (
         <div className="container-signin">
             <div className="form-signin">
                 <img src="images/jira-software.png" alt="" />
-                <h2>Iniciar sesión</h2>
+                <h2>Crear cuenta</h2>
                 <div className="container-input">
                     <TextField
                         id="filled-multiline-flexible"
                         label="Correo electrónico"
+                        type="email"
                         variant="outlined"
                         fullWidth
                     />
@@ -26,11 +26,20 @@ function signIn(){
                     />
                 </div>
                 <div className="container-input">
+                    <TextField
+                        id="filled-multiline-flexible"
+                        label="Confirmar contraseña"
+                        type="password"
+                        variant="outlined"
+                        fullWidth
+                    />
+                </div>
+                <div className="container-input">
                     <Button 
                         variant="contained" 
                         color="primary"
                         fullWidth
-                    >Iniciar sesión</Button>
+                    >Crear cuenta</Button>
                 </div>
                 <div className="container-input">
                     <Button 
@@ -38,8 +47,8 @@ function signIn(){
                         color="primary"
                         fullWidth
                         variant="outlined"
-                        onClick={ () => window.location.href = '/signup' }
-                    >Registrarse</Button>
+                        onClick={ () => window.location.href = 'signin' }
+                    >Iniciar sesión</Button>
                 </div>
                 <div>
                     O
@@ -55,4 +64,4 @@ function signIn(){
     );
 }
 
-export default signIn;
+export default signUp;
