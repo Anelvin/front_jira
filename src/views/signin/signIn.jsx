@@ -1,8 +1,20 @@
 import React, { useState } from 'react';
-import './signIn.scss';
+import './SignIn.scss';
 import { TextField, Button } from '@material-ui/core';
 
-function signIn(){
+function SignIn(){
+
+    const [email, setEmail] = useState(null);
+    const [password, setPassword] = useState(null);
+
+    const login = () => {
+        let data = {
+            email,
+            password
+        }
+        console.log(data);
+    }
+
     return (
         <div className="container-signin">
             <div className="form-signin">
@@ -14,6 +26,7 @@ function signIn(){
                         label="Correo electrónico"
                         variant="outlined"
                         fullWidth
+                        onChange={ event => setEmail(event.target.value) }
                     />
                 </div>
                 <div className="container-input">
@@ -23,6 +36,7 @@ function signIn(){
                         type="password"
                         variant="outlined"
                         fullWidth
+                        onChange={ event => setPassword(event.target.value) }
                     />
                 </div>
                 <div className="container-input">
@@ -30,6 +44,7 @@ function signIn(){
                         variant="contained" 
                         color="primary"
                         fullWidth
+                        onClick={login}
                     >Iniciar sesión</Button>
                 </div>
                 <div className="container-input">
@@ -55,4 +70,4 @@ function signIn(){
     );
 }
 
-export default signIn;
+export default SignIn;
