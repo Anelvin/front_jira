@@ -4,17 +4,15 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-d
 import SignIn from './views/signin/SignIn.jsx';
 import SignUp from './views/signup/SignUp.jsx';
 import Home from './views/home/Home.jsx';
+import PublicRoutes from './routes/public.routes';
+import PrivateRoutes from './routes/private.routes';
 
-function App() {
+function App(props) {
   return (
     <React.StrictMode>
       <Router>
-        <Switch>
-          <Route path='/' exact><Redirect to="/signin" /></Route>
-          <Route path='/signin' component={SignIn} />
-          <Route path='/signup' component={SignUp} />
-          <Route path="/home" component={Home} />
-        </Switch>
+        <PublicRoutes />
+        <PrivateRoutes props={props}/>
       </Router>
     </React.StrictMode>
   );
