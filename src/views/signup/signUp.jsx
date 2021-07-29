@@ -3,6 +3,7 @@ import { TextField, Button, CircularProgress, Snackbar } from '@material-ui/core
 import MuiAlert from '@material-ui/lab/Alert';
 import environment from '../../environments/environment';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 function Alert(props){
     return <MuiAlert elevation={6} variant="filled" {...props} />
@@ -18,6 +19,7 @@ function SignUp(){
     const [open, setOpen] = useState(false);
     const [severity, setSeverity] = useState('success');
     const [message, setMessage] = useState(null);
+    let history = useHistory();
 
     useEffect(() => {
         setUrl(environment.apiUrl);
@@ -53,6 +55,7 @@ function SignUp(){
                         setOpen(true);
                         setMessage('Usuario registrado!');
                         setSeverity('success');
+                        history.push('/home');
                     } else {
                         handleError();
                     }

@@ -4,6 +4,7 @@ import MuiAlert from '@material-ui/lab/Alert';
 import { TextField, Button, Snackbar, CircularProgress } from '@material-ui/core';
 import environment from '../../environments/environment';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 function Alert(props){
     return <MuiAlert elevation={6} variant="filled" {...props} />
@@ -18,6 +19,7 @@ function SignIn(){
     const [message, setMessage] = useState(null);
     const [severity, setSeverity] = useState('success');
     const [url, setUrl] = useState(null);
+    let history = useHistory();
 
     useEffect(() => {
         setUrl(environment.apiUrl);
@@ -44,6 +46,7 @@ function SignIn(){
                     setOpen(true);
                     setMessage('Sesión iniciada!');
                     setSeverity('success');
+                    history.push('/home');
                 } else {
                     handleError();
                 }
