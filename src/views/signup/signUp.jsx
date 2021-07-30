@@ -9,7 +9,7 @@ function Alert(props){
     return <MuiAlert elevation={6} variant="filled" {...props} />
 }
 
-function SignUp(){
+function SignUp(props){
     
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
@@ -23,7 +23,7 @@ function SignUp(){
 
     useEffect(() => {
         setUrl(environment.apiUrl);
-    })
+    }, [])
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway'){
@@ -123,7 +123,6 @@ function SignUp(){
                         variant="contained" 
                         color="primary"
                         fullWidth
-                        variant="outlined"
                         onClick={ () => window.location.href = 'signin' }
                     >Iniciar sesión</Button>
                 </div>

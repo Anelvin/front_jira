@@ -10,7 +10,7 @@ function Alert(props){
     return <MuiAlert elevation={6} variant="filled" {...props} />
 }
 
-function SignIn(){
+function SignIn(props){
 
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
@@ -23,7 +23,7 @@ function SignIn(){
 
     useEffect(() => {
         setUrl(environment.apiUrl);
-    })
+    }, [])
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
@@ -109,7 +109,6 @@ function SignIn(){
                 </div>
                 <div className="container-input">
                     <Button 
-                        variant="contained" 
                         color="primary"
                         fullWidth
                         variant="outlined"
