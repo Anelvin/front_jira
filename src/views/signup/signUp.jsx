@@ -23,7 +23,7 @@ function SignUp(props){
 
     useEffect(() => {
         setUrl(environment.apiUrl);
-    })
+    }, [])
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway'){
@@ -123,7 +123,6 @@ function SignUp(props){
                         variant="contained" 
                         color="primary"
                         fullWidth
-                        variant="outlined"
                         onClick={ () => window.location.href = 'signin' }
                     >Iniciar sesión</Button>
                 </div>

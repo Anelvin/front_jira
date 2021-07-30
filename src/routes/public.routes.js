@@ -1,6 +1,5 @@
 import React from 'react';
-import { Redirect, Switch } from 'react-router-dom';
-import Home from '../views/home/Home.jsx';
+import { Switch } from 'react-router-dom';
 import SignIn from '../views/signin/SignIn.jsx';
 import SignUp from '../views/signup/SignUp.jsx';
 import { PublicRoute } from './helperRoutes';

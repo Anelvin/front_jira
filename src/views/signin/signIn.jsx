@@ -23,7 +23,7 @@ function SignIn(props){
 
     useEffect(() => {
         setUrl(environment.apiUrl);
-    })
+    }, [])
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
@@ -109,7 +109,6 @@ function SignIn(props){
                 </div>
                 <div className="container-input">
                     <Button 
-                        variant="contained" 
                         color="primary"
                         fullWidth
                         variant="outlined"
