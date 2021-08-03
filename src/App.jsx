@@ -6,12 +6,10 @@ import PrivateRoutes from './routes/private.routes';
 
 function App(props) {
   return (
-    <React.StrictMode>
-      <Router>
-        <PublicRoutes />
-        <PrivateRoutes props={props}/>
-      </Router>
-    </React.StrictMode>
+    <Router>
+      <PublicRoutes />
+      <PrivateRoutes props={props}/>
+    </Router>
   );
 }
 

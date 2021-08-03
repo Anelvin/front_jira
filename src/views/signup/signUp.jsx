@@ -50,7 +50,7 @@ function SignUp(props){
             axios.post(url + 'auth/signup', data)
                 .then(result => {
                     if(result.data.token){
-                        console.log(result);
+                        localStorage.setItem('userJira', JSON.stringify(result.data));
                         setLoading(false);
                         setOpen(true);
                         setMessage('Usuario registrado!');
