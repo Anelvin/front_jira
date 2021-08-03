@@ -1,5 +1,6 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router';
+import decode from 'jwt-decode';
 
 /**
  * Create a private route
@@ -7,7 +8,7 @@ import { Redirect, Route } from 'react-router';
  * @returns 
  */
  export const PrivateRoute = ({ component, ...options}) => {
-    const isAuth = true;
+    const isAuth = isAuthenticated();
     if(isAuth) return <Route {...options} component={component} />
     return <Redirect to="/signin" />
 }
@@ -18,7 +19,17 @@ import { Redirect, Route } from 'react-router';
  * @returns 
  */
 export const PublicRoute = ({ component, ...options}) => {
-    const isAuth = false;
+    const isAuth = isAuthenticated();
     if(!isAuth) return <Route {...options} component={component} />
     return <Redirect to="/home" />
+}
+
+const isAuthenticated = () => {
+    const data = JSON.parse(localStorage.getItem('userJira'));
+    if(data){
+        const decoded = decode(data.token);
+        if(decoded.exp > Date.now() / 1000) return true;
+        return false;
+    }
+    return false;
 }

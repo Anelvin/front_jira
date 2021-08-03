@@ -40,8 +40,9 @@ function SignIn(props){
         }
         axios.post(url + 'auth/signin', data)
             .then(result => {
+                console.log(result);
                 if(result.data.token){
-                    console.log(result);
+                    localStorage.setItem('userJira', JSON.stringify(result.data));
                     setLoading(false);
                     setOpen(true);
                     setMessage('Sesión iniciada!');
