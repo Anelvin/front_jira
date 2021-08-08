@@ -1,28 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './SignIn.scss';
 import MuiAlert from '@material-ui/lab/Alert';
 import { TextField, Button, Snackbar, CircularProgress } from '@material-ui/core';
-import environment from '../../environments/environment';
-import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import AuthContext from '../../context/Auth/AuthContext';
 
 function Alert(props){
     return <MuiAlert elevation={6} variant="filled" {...props} />
 }
 
 function SignIn(props){
-
+    const authContext = useContext(AuthContext);
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
     const [loading, setLoading] = useState(false);
     const [open, setOpen] = useState(false);
     const [message, setMessage] = useState(null);
     const [severity, setSeverity] = useState('success');
-    const [url, setUrl] = useState(null);
-    let history = useHistory();
 
     useEffect(() => {
-        setUrl(environment.apiUrl);
+        
     }, [])
 
     const handleClose = (event, reason) => {
@@ -32,37 +28,26 @@ function SignIn(props){
         setOpen(false);
     }
 
-    const login = () => {
+    const login = async () => {
         setLoading(true);
-        let data = {
-            email,
-            password
+        let data = { email, password }
+        try {
+            let isAuthenticated = await authContext.signIn(data);
+            if(!isAuthenticated) {
+                handleError('No autorizado!');
+            } else {
+                props.history.push('/home');
+            }
+        } catch(error) {
+            handleError('No autorizado!');
         }
-        axios.post(url + 'auth/signin', data)
-            .then(result => {
-                console.log(result);
-                if(result.data.token){
-                    localStorage.setItem('userJira', JSON.stringify(result.data));
-                    setLoading(false);
-                    setOpen(true);
-                    setMessage('Sesión iniciada!');
-                    setSeverity('success');
-                    history.push('/home');
-                } else {
-                    handleError();
-                }
-            })
-            .catch(error => {
-                console.log(error);
-                handleError();
-            })
     }
 
-    const handleError = () => {
+    const handleError = (message) => {
         setSeverity('error');
         setLoading(false);
         setOpen(true);
-        setMessage('Error al conectar con el servidor');
+        setMessage(message);
     }
 
     return (

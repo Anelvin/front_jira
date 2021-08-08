@@ -1,29 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { TextField, Button, CircularProgress, Snackbar } from '@material-ui/core';
 import MuiAlert from '@material-ui/lab/Alert';
-import environment from '../../environments/environment';
-import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import AuthContext from '../../context/Auth/AuthContext';
 
 function Alert(props){
     return <MuiAlert elevation={6} variant="filled" {...props} />
 }
 
 function SignUp(props){
-    
+    const authContext = useContext(AuthContext);
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
     const [confirmPassword, setConfirmPassword] = useState(null); 
-    const [url, setUrl] = useState(null);
     const [loading, setLoading] = useState(false);
     const [open, setOpen] = useState(false);
     const [severity, setSeverity] = useState('success');
     const [message, setMessage] = useState(null);
-    let history = useHistory();
-
-    useEffect(() => {
-        setUrl(environment.apiUrl);
-    }, [])
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway'){
@@ -32,36 +24,29 @@ function SignUp(props){
         setOpen(false);
     }
 
-    const handleError = () => {
+    const handleError = (message) => {
         setSeverity('error');
         setLoading(false);
         setOpen(true);
-        setMessage('Error al conectar con el servidor');
+        setMessage(message);
     }
 
-    const createAccount = () => {
+    const createAccount = async () => {
         setLoading(true);
-        const data = {
-            email,
-            password,
-            confirmPassword
-        }
+        const data = { email, password, confirmPassword }
         if(password === confirmPassword){
-            axios.post(url + 'auth/signup', data)
-                .then(result => {
-                    if(result.data.token){
-                        localStorage.setItem('userJira', JSON.stringify(result.data));
-                        setLoading(false);
-                        setOpen(true);
-                        setMessage('Usuario registrado!');
-                        setSeverity('success');
-                        history.push('/home');
-                    } else {
-                        handleError();
-                    }
-                })
+            try {
+                let isAuthenticated = await authContext.signUp(data);
+                if(!isAuthenticated) {
+                    handleError('No autorizado!');
+                } else {
+                    props.history.push('/home');
+                }
+            } catch (error) {
+                handleError('No autorizado!');
+            }
         } else {
-            handleError()
+            handleError('Las contraseñas no coinciden!');
         }
     }
 
