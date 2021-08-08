@@ -3,13 +3,16 @@ import './App.css';
 import { BrowserRouter as Router } from 'react-router-dom';
 import PublicRoutes from './routes/public.routes';
 import PrivateRoutes from './routes/private.routes';
+import AuthState from './context/Auth/AuthState';
 
 function App(props) {
   return (
-    <Router>
-      <PublicRoutes />
-      <PrivateRoutes props={props}/>
-    </Router>
+    <AuthState>
+      <Router>
+        <PublicRoutes />
+        <PrivateRoutes props={props}/>
+      </Router>
+    </AuthState>
   );
 }
 

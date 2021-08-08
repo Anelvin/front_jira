@@ -25,7 +25,7 @@ export const PublicRoute = ({ component, ...options}) => {
 }
 
 const isAuthenticated = () => {
-    const data = JSON.parse(localStorage.getItem('userJira'));
+    const data = JSON.parse(localStorage.getItem('user-jira'));
     if(data){
         const decoded = decode(data.token);
         if(decoded.exp > Date.now() / 1000) return true;
