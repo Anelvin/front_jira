@@ -33,3 +33,13 @@ const isAuthenticated = () => {
     }
     return false;
 }
+
+export const getToken = () => {
+    const data = JSON.parse(localStorage.getItem('user-jira'));
+    let config = {
+        headers: {
+            authorization: 'Bearer ' + data.token
+        }
+    }
+    return config;
+}

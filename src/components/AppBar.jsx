@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -7,11 +7,9 @@ import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import SideBarContext from '../context/SideBar/SideBarContext';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -78,7 +76,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function PrimarySearchAppBar() {
-    const sideBarContext = useContext(SideBarContext);
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -102,10 +99,6 @@ export default function PrimarySearchAppBar() {
     const handleMobileMenuOpen = (event) => {
         setMobileMoreAnchorEl(event.currentTarget);
     };
-
-    const handleSideBar = () => {
-        sideBarContext.changeStateSideBar(!sideBarContext.sideBar);
-    }
 
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
@@ -152,24 +145,16 @@ export default function PrimarySearchAppBar() {
         <div className={classes.grow}>
         <AppBar position="static">
             <Toolbar>
-            <IconButton
-                edge="start"
-                className={classes.menuButton}
-                color="inherit"
-                aria-label="open drawer"
-                onClick={handleSideBar}
-            >
-                <MenuIcon />
-            </IconButton>
             <Typography className={classes.title} variant="h6" noWrap>
                 Proyectos
             </Typography>
+            <div className={classes.grow} />
             <div className={classes.search}>
                 <div className={classes.searchIcon}>
                 <SearchIcon />
                 </div>
                 <InputBase
-                placeholder="Search…"
+                placeholder="Buscar..."
                 classes={{
                     root: classes.inputRoot,
                     input: classes.inputInput,
@@ -177,7 +162,6 @@ export default function PrimarySearchAppBar() {
                 inputProps={{ 'aria-label': 'search' }}
                 />
             </div>
-            <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
                 <IconButton
                 edge="end"

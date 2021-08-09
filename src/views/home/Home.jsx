@@ -1,13 +1,15 @@
 import React from 'react';
 import PrimarySearchAppBar from '../../components/AppBar';
-import TemporaryDrawer from '../../components/SideBar';
+import ProjectList from '../../components/ProjectList';
+import SearchBar from '../../components/SearchBar';
 
 function Home(){
 
     return (
         <div>
             <PrimarySearchAppBar />
-            <TemporaryDrawer test={true} />
+            <SearchBar />
+            <ProjectList />
         </div>
     );
 
