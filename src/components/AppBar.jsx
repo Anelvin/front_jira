@@ -13,13 +13,14 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   menuButton: {
     marginRight: theme.spacing(2),
   },
   title: {
     display: 'none',
+    color: '#000000',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
@@ -27,9 +28,9 @@ const useStyles = makeStyles((theme) => ({
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    backgroundColor: alpha(theme.palette.common.black, 0.15),
     '&:hover': {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
+      backgroundColor: alpha(theme.palette.common.black, 0.25),
     },
     marginRight: theme.spacing(2),
     marginLeft: 0,
@@ -53,7 +54,6 @@ const useStyles = makeStyles((theme) => ({
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create('width'),
     width: '100%',
@@ -143,7 +143,7 @@ export default function PrimarySearchAppBar() {
 
     return (
         <div className={classes.grow}>
-        <AppBar position="static">
+        <AppBar position="static" style={{backgroundColor: '#E5E5E5'}}>
             <Toolbar>
             <Typography className={classes.title} variant="h6" noWrap>
                 Proyectos
