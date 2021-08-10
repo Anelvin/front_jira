@@ -90,6 +90,7 @@ function SignIn(props){
                                 color="primary"
                                 fullWidth
                                 onClick={login}
+                                style={{textTransform: 'none'}}
                             >Iniciar sesión</Button>
                     }
                 </div>
@@ -99,6 +100,7 @@ function SignIn(props){
                         fullWidth
                         variant="outlined"
                         onClick={ () => window.location.href = '/signup' }
+                        style={{textTransform: 'none'}}
                     >Registrarse</Button>
                 </div>
                 <div>

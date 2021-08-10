@@ -16,6 +16,7 @@ const ProjectList = (props) => {
     const headersTable = ['ID', 'Nombre', 'Descripción', 'Fecha'];
     const [dataColumn, setDataColumn] = useState([]);
     const classes = useStyle();
+    
     useEffect(() => {
         async function getProjects(apiUrl){
             let config = await getToken();
@@ -23,9 +24,8 @@ const ProjectList = (props) => {
             setDataColumn(result.data.projects);
             console.log(result);
         }
-
         getProjects(apiUrl);
-    }, []);
+    });
 
     return (
         <div className={classes.container}>

@@ -100,6 +100,7 @@ function SignUp(props){
                                 color="primary"
                                 fullWidth
                                 onClick={createAccount}
+                                style={{textTransform: 'none'}}
                             >Crear cuenta</Button>
                     }
                 </div>
@@ -109,6 +110,7 @@ function SignUp(props){
                         color="primary"
                         fullWidth
                         onClick={ () => window.location.href = 'signin' }
+                        style={{textTransform: 'none'}}
                     >Iniciar sesión</Button>
                 </div>
                 <div>
