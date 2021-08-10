@@ -7,11 +7,13 @@ import Public from '../views/public/Public';
 
 const PublicRoutes = (props) => {
     return (
-        <Switch>
-            <PublicRoute exact path='/' component={Public}/>
-            <PublicRoute exact path='/signin' component={SignIn} />
-            <PublicRoute exact path='/signup' component={SignUp} />
-        </Switch>
+        <div>
+            <Switch>
+                <PublicRoute exact path='/' component={Public}/>
+                <PublicRoute exact path='/signin' component={SignIn} />
+                <PublicRoute exact path='/signup' component={SignUp} />
+            </Switch>
+        </div>
     );
 }
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router';
 import decode from 'jwt-decode';
+import AppBar from '../components/AppBar';
+import AppBarPublic from '../components/AppBarPublic';
 
 /**
  * Create a private route
@@ -9,7 +11,14 @@ import decode from 'jwt-decode';
  */
  export const PrivateRoute = ({ component, ...options}) => {
     const isAuth = isAuthenticated();
-    if(isAuth) return <Route {...options} component={component} />
+    if(isAuth){
+        return (
+            <div>
+                <AppBar />
+                <Route {...options} component={component} />
+            </div>
+        )
+    } 
     return <Redirect to="/signin" />
 }
 
@@ -20,7 +29,14 @@ import decode from 'jwt-decode';
  */
 export const PublicRoute = ({ component, ...options}) => {
     const isAuth = isAuthenticated();
-    if(!isAuth) return <Route {...options} component={component} />
+    if(!isAuth) {
+        return (
+            <div>
+                <AppBarPublic />
+                <Route {...options} component={component} />
+            </div>
+        )
+    } 
     return <Redirect to="/home" />
 }
 

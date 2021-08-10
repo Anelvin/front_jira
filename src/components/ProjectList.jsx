@@ -25,7 +25,7 @@ const ProjectList = (props) => {
             console.log(result);
         }
         getProjects(apiUrl);
-    });
+    }, []);
 
     return (
         <div className={classes.container}>

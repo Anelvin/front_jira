@@ -11,9 +11,11 @@ import { PrivateRoute } from './helperRoutes';
  */
 const PrivateRoutes = (props) => {
     return (
-        <Switch>
-            <PrivateRoute exact path="/home" component={Home} />
-        </Switch>
+        <div>
+            <Switch>
+                <PrivateRoute exact path="/home" component={Home} />
+            </Switch>
+        </div>
     );
 }
 
