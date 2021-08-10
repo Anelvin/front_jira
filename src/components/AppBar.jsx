@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
   },
   inputRoot: {
-    color: 'inherit',
+    color: '#000000',
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
@@ -151,7 +151,7 @@ export default function PrimarySearchAppBar() {
             <div className={classes.grow} />
             <div className={classes.search}>
                 <div className={classes.searchIcon}>
-                <SearchIcon />
+                <SearchIcon style={{color: '#000000'}} />
                 </div>
                 <InputBase
                 placeholder="Buscar..."
@@ -169,7 +169,6 @@ export default function PrimarySearchAppBar() {
                 aria-controls={menuId}
                 aria-haspopup="true"
                 onClick={handleProfileMenuOpen}
-                color="inherit"
                 >
                 <AccountCircle />
                 </IconButton>
