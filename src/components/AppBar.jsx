@@ -10,6 +10,8 @@ import Menu from '@material-ui/core/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import { Button } from '@material-ui/core';
+import { ExpandMore } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -26,9 +28,12 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   search: {
-    position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.black, 0.15),
+    backgroundColor: '#ffffff',
+    display: 'flex',
+    flexDirection: 'row',
+    alignContent: 'center',
+    border: '2px solid #E5E5E5',
     '&:hover': {
       backgroundColor: alpha(theme.palette.common.black, 0.25),
     },
@@ -39,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: theme.spacing(3),
       width: 'auto',
     },
+    padding: '0 5px'
   },
   searchIcon: {
     padding: theme.spacing(0, 2),
@@ -51,15 +57,10 @@ const useStyles = makeStyles((theme) => ({
   },
   inputRoot: {
     color: '#000000',
-  },
+    width: '100%'
+},
   inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
+
   },
   sectionDesktop: {
     display: 'none',
@@ -73,18 +74,27 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
+  image: {
+    width: '120px',
+    marginRight: '20px'
+  }
 }));
 
 export default function PrimarySearchAppBar() {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+    const [anchorElMenu, setAnchorElMenu] = React.useState(null);
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
+    };
+
+    const handleClick = (event) => {
+      setAnchorElMenu(event.currentTarget);
     };
 
     const handleMobileMenuClose = () => {
@@ -99,6 +109,15 @@ export default function PrimarySearchAppBar() {
     const handleMobileMenuOpen = (event) => {
         setMobileMoreAnchorEl(event.currentTarget);
     };
+
+    const itemsAppBar = [
+      'Tu trabajo',
+      'Proyectos',
+      'Filtros',
+      'Paneles',
+      'Personas',
+      'Aplicaciones'
+    ];
 
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
@@ -143,24 +162,34 @@ export default function PrimarySearchAppBar() {
 
     return (
         <div className={classes.grow}>
-        <AppBar position="static" style={{backgroundColor: '#E5E5E5'}}>
+        <AppBar position="static" style={{backgroundColor: '#FFFFFF'}}>
             <Toolbar>
             <Typography className={classes.title} variant="h6" noWrap>
-                Proyectos
+                <img className={classes.image} src="/images/jira.png" alt="Logo de Jira" />
             </Typography>
+            {itemsAppBar.map((item) => {
+              return (
+                <Button key={item} style={{textTransform: 'none'}} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                  {item}
+                  <ExpandMore />
+                </Button>
+              );
+            })}
             <div className={classes.grow} />
-            <div className={classes.search}>
-                <div className={classes.searchIcon}>
-                <SearchIcon style={{color: '#000000'}} />
-                </div>
-                <InputBase
-                placeholder="Buscar..."
-                classes={{
-                    root: classes.inputRoot,
-                    input: classes.inputInput,
-                }}
-                inputProps={{ 'aria-label': 'search' }}
-                />
+            <div className={classes.search} style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center'
+            }}>
+              <SearchIcon style={{color: '#000000', marginRight: '8px'}} />  
+              <InputBase
+              placeholder="Buscar..."
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              inputProps={{ 'aria-label': 'search' }}
+              />
             </div>
             <div className={classes.sectionDesktop}>
                 <IconButton

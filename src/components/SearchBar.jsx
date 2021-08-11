@@ -80,21 +80,9 @@ const SearchBar = () => {
                         renderInput={(params) => <TextField {...params} label="Todos los tipos" variant="outlined"/>}
                     />
                 </div>
-                <div className={classes.containerInput}>
-                    <Autocomplete 
-                        id="combo-box-1"
-                        options={typeCategories}
-                        size="small"
-                        //getOptionLabel={(option) => option.title}
-                        style={{width: 300}}
-                        multiple={true}
-                        renderInput={(params) => <TextField {...params} label="Todas las categorías" variant="outlined"/>}
-                    />
-                </div>
             </div>
         </div>
     );
-
 }
 
 export default SearchBar;
