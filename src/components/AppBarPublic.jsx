@@ -3,9 +3,54 @@ import { alpha, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { Link } from 'react-router-dom';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import { AppBarPublicTitles } from '../constants/ItemsTitle';
+import { Button, Link } from '@material-ui/core';
+import { ExpandMore } from '@material-ui/icons';
+import SearchIcon from '@material-ui/icons/Search';
 
 const useStyles = makeStyles((theme) => ({
+  appBar:{
+    position: 'relative',
+    backgroundColor: '#f4f5f7', 
+    color: '#000000',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    width: '100%',
+  },
+  containerAppBarInputRight: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  appBarInputRight: {
+    margin: '0 10px'
+  },
+  button: {
+    padding: '5px',
+    borderRadius: '4px',
+    '&:hover':{
+      cursor: 'pointer',
+      textDecoration: 'none',
+      backgroundColor: '#e5e5e5'
+    }
+  },
+  toolbar:{
+    width: '100vw',
+    maxWidth: '1200px',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  inputExpand: {
+    display: 'flex',
+    flexDirection: 'row'
+  },
+  defaultColor: {
+    color: '#0052CC'
+  },
   grow: {
     flexGrow: 1
   },
@@ -67,6 +112,10 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
+  image: {
+    width: '200px',
+    marginRight: '20px'
+  }
 }));
 
 export default function AppBarPublic() {
@@ -74,35 +123,29 @@ export default function AppBarPublic() {
 
     return (
         <div className={classes.grow}>
-        <AppBar position="static">
+        <AppBar className={classes.appBar} position="static">
             <Toolbar>
-            <Typography className={classes.title} variant="h6" noWrap>
-                Jira software
-            </Typography>
-            <div className={classes.grow} />
-            <Link
-                href="/signin"
-                variant="body1"
-                to="/signin"
-                style={{
-                    color: '#ffffff',
-                    textDecoration: 'none',
-                }}
-            >
-                Iniciar sesión
-            </Link>
-            <Link
-                href="/signin"
-                variant="body1"
-                to="/signup"
-                style={{
-                    color: '#ffffff',
-                    textDecoration: 'none',
-                    marginLeft: '20px'
-                }}
-            >
-                Registrarse
-            </Link>
+              <div className={classes.toolbar}>
+                <div className={classes.inputExpand}>
+                  <Typography className={classes.title} variant="h6" noWrap>
+                      <img className={classes.image} src="./images/atlassian.svg" alt="" />
+                  </Typography> 
+                  {AppBarPublicTitles.map((item) => {
+                    return (
+                      <Button key={item} style={{textTransform: 'none'}} aria-controls="simple-menu" aria-haspopup="true">
+                        {item}
+                        <ExpandMore className={classes.defaultColor} />
+                      </Button>
+                    );
+                  })
+                  }
+                </div>
+                <div className={classes.containerAppBarInputRight}>
+                  <Link className={[classes.appBarInputRight, classes.button]}>Comprar</Link>
+                  <SearchIcon className={[classes.appBarInputRight, classes.button]} style={{color: '#000000', marginRight: '8px'}} />  
+                  <AccountCircle className={[classes.appBarInputRight, classes.button]} />
+                </div>
+                </div>
             </Toolbar>
             
         </AppBar>
