@@ -27,17 +27,9 @@ const useStyles = makeStyles((theme) => ({
   appBarInputRight: {
     margin: '0 10px'
   },
-  button: {
-    padding: '5px',
-    borderRadius: '4px',
-    '&:hover':{
-      cursor: 'pointer',
-      textDecoration: 'none',
-      backgroundColor: '#e5e5e5'
-    }
-  },
   toolbar:{
     width: '100vw',
+    height: '100%',
     maxWidth: '1200px',
     display: 'flex',
     flexDirection: 'row',
@@ -54,15 +46,41 @@ const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1
   },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
   title: {
     display: 'none',
     color: 'white',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
+  },
+  containerLinks: {
+    height: '100%',
+    '&:hover': {
+        cursor: 'pointer'
+    }
+  },
+  linksLeft: {
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  links: {
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    margin: '0 10px',
+    fontWeight: 'bold',
+    '&:hover': {
+        textDecoration: 'none',
+        borderBottom: '2px solid #0052CC'
+    }
+  },
+  buttonGetFree: {
+    color: '#0052CC',
+    fontWeight: 'bold',
+    border: '1px solid #0052CC'
   },
   search: {
     position: 'relative',
@@ -79,39 +97,6 @@ const useStyles = makeStyles((theme) => ({
       width: 'auto',
     },
   },
-  searchIcon: {
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  inputRoot: {
-    color: '#000000',
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
-  },
-  sectionDesktop: {
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
-    },
-  },
-  sectionMobile: {
-    display: 'flex',
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
-  },
   image: {
     width: '200px',
     marginRight: '20px'
@@ -125,23 +110,25 @@ export default function SubAppBarPublic() {
         <div className={classes.grow}>
         <AppBar className={classes.appBar} position="static">
             <Toolbar>
-              <div className={classes.toolbar}>
-                <div className={classes.inputExpand}>
-                  <Typography className={classes.title} variant="h6" noWrap>
-                      <img className={classes.image} src="./images/jira-software.png" alt="" />
-                  </Typography> 
-                  {SubAppBarPublicTitles.map((item) => {
-                    return (
-                      <Button key={item} style={{textTransform: 'none'}} aria-controls="simple-menu" aria-haspopup="true">
-                        {item}
-                      </Button>
-                    );
-                  })
-                  }
-                </div>
-                <div className={classes.containerAppBarInputRight}>
-                  <Button style={{textTransform: 'none'}}>Consíguelo gratis</Button>
-                </div>
+                <div className={classes.toolbar}>
+                    <div className={classes.linksLeft}>
+                        <Typography className={classes.title} variant="h6" noWrap>
+                            <img className={classes.image} src="./images/jira-software-blue.svg" alt="" />
+                        </Typography> 
+                        {SubAppBarPublicTitles.map((item) => {
+                            return (
+                                <div className={classes.containerLinks}>
+                                    <Link className={classes.links} key={item} style={{textTransform: 'none'}} aria-controls="simple-menu" aria-haspopup="true">
+                                        {item}
+                                    </Link>
+                                </div>
+                            );
+                        })
+                        }
+                    </div>
+                    <div className={classes.containerAppBarInputRight}>
+                        <Button className={classes.buttonGetFree} style={{textTransform: 'none'}}>Consíguelo gratis</Button>
+                    </div>
                 </div>
             </Toolbar>
             
