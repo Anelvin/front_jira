@@ -3,11 +3,8 @@ import { alpha, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import { SubAppBarPublicTitles } from '../constants/ItemsTitle';
 import { Button, Link } from '@material-ui/core';
-import { ExpandMore } from '@material-ui/icons';
-import SearchIcon from '@material-ui/icons/Search';
 
 const useStyles = makeStyles((theme) => ({
   appBar:{
