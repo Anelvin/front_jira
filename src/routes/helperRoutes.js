@@ -3,6 +3,7 @@ import { Redirect, Route } from 'react-router';
 import decode from 'jwt-decode';
 import AppBar from '../components/AppBar';
 import AppBarPublic from '../components/AppBarPublic';
+import SubAppBarPublic from '../components/SubAppBarPublic';
 
 /**
  * Create a private route
@@ -33,6 +34,7 @@ export const PublicRoute = ({ component, ...options}) => {
         return (
             <div>
                 <AppBarPublic />
+                <SubAppBarPublic />
                 <Route {...options} component={component} />
             </div>
         )
