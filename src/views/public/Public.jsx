@@ -71,6 +71,19 @@ const useStyles = makeStyles((theme) => ({
     },
     fontSize: {
         fontSize: '1.25rem'
+    },
+    integrations:{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center'
+    },
+    itemIntegration: {
+        width: '20%',
+        margin: '0 1%',
+        height: '400px'
+    },
+    icon: {
+        width: '60px'
     }
 }));
 
@@ -128,6 +141,40 @@ const Public = () => {
                 <h1>Se integra con las herramientas que ya usas</h1>
                 <p className={[classes.marginVertical, classes.fontSize].join(' ')}>Mejora tu flujo de trabajo con integraciones de primer nivel para que tu equipo pueda obtener los mejores resultados.</p>
                 <Link className={[classes.appBarInputRight, classes.button, classes.marginVertical, classes.hover]}>Más información sobre las integraciones</Link>
+            </div>
+            <div className={[classes.integrations, classes.marginVertical].join(' ')}>
+                <div className={classes.itemIntegration}>
+                    <div style={{height: '100px'}}>
+                        <img style={{width: '100px'}} src="./images/Software-documentation.svg" alt="" />
+                    </div>
+                    <h3>Gestión del conocimiento</h3>
+                    <p style={{margin: '20px 0'}}>Transforma los requisitos de productos de Confluence en un backlog de Jira Software con un solo clic.</p>
+                    <Link className={[classes.appBarInputRight, classes.button, classes.marginVertical, classes.hover]}>Obtén más información sobre Confluence</Link>
+                </div>
+                <div className={classes.itemIntegration}>
+                    <div style={{height: '100px'}}>
+                        <img style={{width: '60px'}} src="./images/Software-Git.svg" alt="" />
+                    </div>
+                    <h3>Flujo de trabajo de desarrollo</h3>
+                    <p style={{margin: '20px 0'}}>Jira Software actualiza automáticamente las incidencias y las transiciones cuando se confirma el código en Bitbucket.</p>
+                    <Link className={[classes.appBarInputRight, classes.button, classes.marginVertical, classes.hover]}>Más información sobre Bitbucket</Link>
+                </div>
+                <div className={classes.itemIntegration}>
+                    <div style={{height: '100px'}}>
+                        <img style={{width: '86px'}} src="./images/Software-Hierarchy.svg" alt="" />
+                    </div>
+                    <h3>Nuestra guía para la integración y la implementación continuas</h3>
+                    <p style={{margin: '20px 0'}}>Sobrealimenta tu CI/CD con Pipelines y supervisa el estado de compilación desde Jira Software.</p>
+                    <Link className={[classes.appBarInputRight, classes.button, classes.marginVertical, classes.hover]}>Más información sobre Pipelines</Link>
+                </div>
+                <div className={classes.itemIntegration}>
+                    <div style={{height: '100px'}}>
+                        <img style={{width: '100px'}} src="./images/devops-big-spot@2x.png" alt="" />
+                    </div>
+                    <h3>Atlassian Open DevOps</h3>
+                    <p style={{margin: '20px 0'}}>Una solución preconfigurada de nuestros mejores productos e integraciones de terceros basada en lo que los equipos de software de alto rendimiento necesitan para empezar a trabajar.</p>
+                    <Link className={[classes.appBarInputRight, classes.button, classes.marginVertical, classes.hover]}>Más información sobre DevOps de Atlassian</Link>
+                </div>
             </div>
         </div>
     )
